@@ -6,6 +6,11 @@
 
   <title>WEST THEORY | Official Website</title>
 
+  <!-- Modern condensed display font for the main WEST THEORY title -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
@@ -31,14 +36,37 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 6%;
-      background: rgba(5, 5, 5, 0.96);
-      border-bottom: 1px solid #242424;
+      position: relative;
+      background: rgba(5, 5, 5, 0.97);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    /* Subtle illuminated edge beneath header */
+    header::after {
+      content: "";
+      position: absolute;
+      left: 5%;
+      bottom: -1px;
+      width: 35%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.48),
+        rgba(255,255,255,0.12),
+        transparent
+      );
+      box-shadow: 0 0 10px rgba(255,255,255,0.10);
+      pointer-events: none;
     }
 
     .logo {
       font-size: 26px;
       font-weight: 900;
       letter-spacing: 3px;
+      color: #ffffff;
+      text-shadow:
+        0 0 8px rgba(255,255,255,0.15),
+        0 0 18px rgba(255,255,255,0.05);
     }
 
     nav {
@@ -47,16 +75,38 @@
     }
 
     nav a {
+      position: relative;
       color: #cfcfcf;
       text-decoration: none;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 1.5px;
-      transition: color 0.2s ease;
+      transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
     }
 
     nav a:hover {
       color: #ffffff;
+      text-shadow: 0 0 8px rgba(255,255,255,0.35);
+    }
+
+    nav a.active {
+      color: #ffffff;
+    }
+
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -10px;
+      width: 22px;
+      height: 1px;
+      transform: translateX(-50%);
+      background: #ffffff;
+      box-shadow:
+        0 0 5px rgba(255,255,255,0.8),
+        0 0 12px rgba(255,255,255,0.35);
     }
 
     /* HERO */
@@ -101,7 +151,14 @@
         );
 
       background-size: 45px 45px;
+
       mask-image: linear-gradient(
+        to right,
+        transparent,
+        black
+      );
+
+      -webkit-mask-image: linear-gradient(
         to right,
         transparent,
         black
@@ -122,15 +179,27 @@
       margin-bottom: 24px;
     }
 
+    /*
+      Main title:
+      intentionally lighter, taller and more contemporary
+      than the original heavy block lettering.
+    */
+
     h1 {
-      font-size: clamp(64px, 10vw, 150px);
-      line-height: 0.82;
-      letter-spacing: -7px;
-      font-weight: 900;
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      font-size: clamp(78px, 11vw, 165px);
+      line-height: 0.78;
+      letter-spacing: 1px;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #f4f4f4;
+
+      text-shadow:
+        0 0 18px rgba(255,255,255,0.035);
     }
 
     .tagline {
-      margin-top: 35px;
+      margin-top: 42px;
       max-width: 650px;
       color: #b8b8b8;
       font-size: 18px;
@@ -155,30 +224,42 @@
     .button {
       display: inline-block;
       padding: 16px 27px;
-      border: 1px solid #ffffff;
+      border: 1px solid rgba(255,255,255,0.85);
       color: #ffffff;
       text-decoration: none;
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 2px;
-      transition: 0.2s ease;
+
+      transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
     }
 
     .button-primary {
       background: #ffffff;
       color: #080808;
+      box-shadow: 0 0 14px rgba(255,255,255,0.07);
     }
 
     .button-primary:hover {
-      background: #d7d7d7;
+      background: #ffffff;
+      box-shadow:
+        0 0 10px rgba(255,255,255,0.20),
+        0 0 24px rgba(255,255,255,0.08);
     }
 
     .button-secondary:hover {
-      background: #ffffff;
-      color: #080808;
+      background: rgba(255,255,255,0.05);
+      border-color: #ffffff;
+      box-shadow:
+        0 0 10px rgba(255,255,255,0.10),
+        inset 0 0 10px rgba(255,255,255,0.025);
     }
 
-    /* LOWER STRIP */
+    /* LOWER IDENTITY STRIP */
 
     .identity-strip {
       min-height: 110px;
@@ -203,6 +284,7 @@
     /* MOBILE */
 
     @media (max-width: 750px) {
+
       header {
         height: auto;
         min-height: 75px;
@@ -212,9 +294,17 @@
         gap: 18px;
       }
 
+      header::after {
+        width: 60%;
+      }
+
       nav {
         gap: 18px;
         flex-wrap: wrap;
+      }
+
+      nav a.active::after {
+        bottom: -6px;
       }
 
       .hero {
@@ -223,7 +313,9 @@
       }
 
       h1 {
-        letter-spacing: -4px;
+        font-size: clamp(76px, 22vw, 120px);
+        line-height: 0.80;
+        letter-spacing: 0;
       }
 
       .tagline {
@@ -241,14 +333,18 @@
 <body>
 
   <header>
-    <div class="logo">WEST THEORY</div>
+
+    <div class="logo">
+      WEST THEORY
+    </div>
 
     <nav>
-      <a href="#">HOME</a>
+      <a class="active" href="#">HOME</a>
       <a href="#music">MUSIC</a>
       <a href="#about">ABOUT</a>
       <a href="#merch">MERCH</a>
     </nav>
+
   </header>
 
 
