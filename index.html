@@ -186,9 +186,7 @@
       font-weight: 500;
       text-transform: uppercase;
       color: #f4f4f4;
-
-      text-shadow:
-        0 0 18px rgba(255,255,255,0.035);
+      text-shadow: 0 0 18px rgba(255,255,255,0.035);
     }
 
     .tagline {
@@ -439,12 +437,200 @@
       text-shadow: 0 0 8px rgba(255,255,255,0.25);
     }
 
-    /* MOBILE */
+    /* ABOUT */
+
+    .about {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      padding: 150px 7%;
+      border-top: 1px solid rgba(255,255,255,0.08);
+
+      background:
+        radial-gradient(
+          circle at 82% 42%,
+          rgba(255,255,255,0.055),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #0d0d0d 0%,
+          #080808 55%,
+          #050505 100%
+        );
+    }
+
+    .about::before {
+      content: "BREAKBEAT   →   GOLDEN AGE   →   WEST COAST   →   808   →   NOW   →   ?";
+      position: absolute;
+      left: -2%;
+      top: 48%;
+      white-space: nowrap;
+
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      font-size: clamp(46px, 7vw, 120px);
+      font-weight: 500;
+      letter-spacing: 5px;
+
+      color: rgba(255,255,255,0.022);
+
+      transform: rotate(-4deg);
+      pointer-events: none;
+    }
+
+    .about-grid {
+      position: relative;
+      z-index: 2;
+
+      max-width: 1500px;
+      margin: 0 auto;
+
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 100px;
+    }
+
+    .about-left {
+      padding-top: 15px;
+    }
+
+    .about-kicker {
+      color: #777;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      margin-bottom: 25px;
+    }
+
+    .about-intro {
+      max-width: 480px;
+
+      color: #a1a1a1;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .about-intro strong {
+      color: #f2f2f2;
+      font-weight: 700;
+    }
+
+    .about-right {
+      padding-top: 70px;
+    }
+
+    .about-statement {
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      font-size: clamp(60px, 7.2vw, 120px);
+      font-weight: 400;
+      line-height: 0.88;
+      letter-spacing: 1px;
+      color: #f1f1f1;
+    }
+
+    .about-statement .dim {
+      color: #525252;
+    }
+
+    .about-rule {
+      width: 70px;
+      height: 1px;
+      margin: 55px 0 38px;
+
+      background: #ffffff;
+
+      box-shadow:
+        0 0 8px rgba(255,255,255,0.40),
+        0 0 20px rgba(255,255,255,0.10);
+    }
+
+    .about-definition {
+      max-width: 650px;
+
+      color: #8c8c8c;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .about-definition p + p {
+      margin-top: 20px;
+    }
+
+    .project-identity {
+      margin-top: 70px;
+      padding: 32px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .identity-label {
+      color: #5f5f5f;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      margin-bottom: 10px;
+    }
+
+    .identity-value {
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      color: #e8e8e8;
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .about-closing {
+      max-width: 1500px;
+      margin: 130px auto 0;
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+    }
+
+    .about-closing-line {
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      font-size: clamp(38px, 4vw, 68px);
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .about-closing-line span {
+      color: #626262;
+    }
+
+    .about-mark {
+      color: #4d4d4d;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      white-space: nowrap;
+    }
+
+    /* RESPONSIVE */
 
     @media (max-width: 1100px) {
+
       .album-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 50px 24px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-right {
+        padding-top: 20px;
       }
     }
 
@@ -503,6 +689,29 @@
       .album-grid {
         grid-template-columns: 1fr;
         gap: 55px;
+      }
+
+      .about {
+        padding: 100px 7%;
+      }
+
+      .about-statement {
+        font-size: clamp(58px, 18vw, 90px);
+      }
+
+      .project-identity {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .about-closing {
+        margin-top: 90px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .about::before {
+        top: 58%;
       }
     }
   </style>
@@ -612,8 +821,6 @@
 
       <div class="album-grid">
 
-        <!-- ALBUM I -->
-
         <article class="album">
 
           <div class="album-art">
@@ -643,8 +850,6 @@
 
         </article>
 
-
-        <!-- ALBUM II -->
 
         <article class="album">
 
@@ -676,8 +881,6 @@
         </article>
 
 
-        <!-- ALBUM III -->
-
         <article class="album">
 
           <div class="album-art">
@@ -708,8 +911,6 @@
         </article>
 
 
-        <!-- ALBUM IV -->
-
         <article class="album">
 
           <div class="album-art">
@@ -738,6 +939,105 @@
           </div>
 
         </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+      <div class="about-grid">
+
+        <div class="about-left">
+
+          <div class="about-kicker">
+            ABOUT / WEST THEORY
+          </div>
+
+          <p class="about-intro">
+            <strong>WEST THEORY is the artist.</strong><br><br>
+
+            Not one singer. Not one voice. Not one face.
+            It is a music project built around an evolving sound,
+            with every voice serving the song rather than defining
+            the identity behind it.
+          </p>
+
+        </div>
+
+
+        <div class="about-right">
+
+          <div class="about-statement">
+            THIS ISN'T<br>
+            <span class="dim">A CHARACTER.</span><br>
+            IT'S A PROJECT.
+          </div>
+
+          <div class="about-rule"></div>
+
+          <div class="about-definition">
+
+            <p>
+              WEST THEORY lives where West Coast soul,
+              hip-hop history and modern production meet.
+              The sound can move between voices, eras and styles,
+              but the identity remains the same.
+            </p>
+
+            <p>
+              The catalogue looks backward without living there.
+              Breakbeats, Golden Age foundations, West Coast melody,
+              the rise of the 808 and whatever comes next all belong
+              to the same continuing story.
+            </p>
+
+          </div>
+
+
+          <div class="project-identity">
+
+            <div>
+              <div class="identity-label">
+                THE ARTIST
+              </div>
+
+              <div class="identity-value">
+                WEST THEORY
+              </div>
+            </div>
+
+
+            <div>
+              <div class="identity-label">
+                THE VOICES
+              </div>
+
+              <div class="identity-value">
+                PART OF THE SOUND
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="about-closing">
+
+        <div class="about-closing-line">
+          PAST IN THE BLOOD.<br>
+          <span>FUTURE IN THE SOUND.</span>
+        </div>
+
+        <div class="about-mark">
+          WEST THEORY · 2026
+        </div>
 
       </div>
 
