@@ -2,10 +2,313 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>WEST THEORY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>WEST THEORY | Official Website</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #080808;
+      color: #f2f2f2;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* HEADER */
+
+    header {
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      background: rgba(5, 5, 5, 0.96);
+      border-bottom: 1px solid #242424;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    nav {
+      display: flex;
+      gap: 38px;
+    }
+
+    nav a {
+      color: #cfcfcf;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: calc(100vh - 82px);
+      display: flex;
+      align-items: center;
+      padding: 80px 8%;
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 75% 50%,
+          rgba(255, 255, 255, 0.07),
+          transparent 32%
+        ),
+        linear-gradient(
+          110deg,
+          #050505 0%,
+          #0b0b0b 55%,
+          #151515 100%
+        );
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,0.018) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.018) 1px,
+          transparent 1px
+        );
+
+      background-size: 45px 45px;
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        black
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      color: #9a9a9a;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(64px, 10vw, 150px);
+      line-height: 0.82;
+      letter-spacing: -7px;
+      font-weight: 900;
+    }
+
+    .tagline {
+      margin-top: 35px;
+      max-width: 650px;
+      color: #b8b8b8;
+      font-size: 18px;
+      line-height: 1.7;
+      letter-spacing: 1px;
+    }
+
+    .statement {
+      margin-top: 18px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #ffffff;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      margin-top: 40px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 16px 27px;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      transition: 0.2s ease;
+    }
+
+    .button-primary {
+      background: #ffffff;
+      color: #080808;
+    }
+
+    .button-primary:hover {
+      background: #d7d7d7;
+    }
+
+    .button-secondary:hover {
+      background: #ffffff;
+      color: #080808;
+    }
+
+    /* LOWER STRIP */
+
+    .identity-strip {
+      min-height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      border-top: 1px solid #242424;
+      border-bottom: 1px solid #242424;
+      background: #0c0c0c;
+      text-align: center;
+    }
+
+    .identity-strip p {
+      color: #777;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      line-height: 2;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 750px) {
+      header {
+        height: auto;
+        min-height: 75px;
+        padding: 20px 6%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      nav {
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        min-height: 80vh;
+        padding: 70px 7%;
+      }
+
+      h1 {
+        letter-spacing: -4px;
+      }
+
+      .tagline {
+        font-size: 16px;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>WEST THEORY</h1>
-  <p>Official website coming soon.</p>
+
+  <header>
+    <div class="logo">WEST THEORY</div>
+
+    <nav>
+      <a href="#">HOME</a>
+      <a href="#music">MUSIC</a>
+      <a href="#about">ABOUT</a>
+      <a href="#merch">MERCH</a>
+    </nav>
+  </header>
+
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          WEST COAST SOUL · HIP-HOP HISTORY
+        </div>
+
+        <h1>
+          WEST<br>THEORY
+        </h1>
+
+        <p class="tagline">
+          West Coast soul. Hip-hop history.<br>
+          Past in the blood. Future in the sound.
+        </p>
+
+        <p class="statement">
+          HIP-HOP HAS NEVER HAD A FINAL FORM.
+        </p>
+
+        <div class="buttons">
+
+          <a
+            class="button button-primary"
+            href="#music"
+          >
+            LISTEN
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="#about"
+          >
+            DISCOVER WEST THEORY
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="identity-strip">
+
+      <p>
+        THE BREAKBEAT IS ANCESTRY &nbsp;·&nbsp;
+        THE 808 IS THE GROUND BENEATH IT &nbsp;·&nbsp;
+        THE HUMAN VOICE LIVES ABOVE BOTH
+      </p>
+
+    </section>
+
+  </main>
+
 </body>
 </html>
