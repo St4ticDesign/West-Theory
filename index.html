@@ -1353,6 +1353,32 @@
   <script src="https://w.soundcloud.com/player/api.js"></script>
 
   <script>
+    const WEST_THEORY_TRACKS = {
+      'still-breathing': [
+        'Still West',
+        'Left Side',
+        "We Ain't Playin'",
+        'No Sunshine',
+        'Heavy Footsteps',
+        'Flame',
+        'No Reserved Seats',
+        'Still Here'
+      ],
+
+      'built-from-breaks': [
+        'The Room Upstairs',
+        'Keep the Break Going',
+        'Pass the Mic',
+        'Put It on Wax',
+        'More Than a Party',
+        'Scratch the Surface',
+        'Machine in the Room',
+        'No Band Required',
+        'Step to the Mic',
+        'Gold in the Crates'
+      ]
+    };
+
     document.querySelectorAll('.wt-player').forEach((player) => {
 
       const iframe = player.querySelector('.wt-sc-engine');
@@ -1366,6 +1392,9 @@
       const progress = player.querySelector('.wt-progress');
       const progressFill = player.querySelector('.wt-progress-fill');
       const tracklist = player.querySelector('.wt-tracklist');
+
+      const canonicalTitles =
+        WEST_THEORY_TRACKS[player.dataset.player] || [];
 
       let sounds = [];
       let activeIndex = 0;
@@ -1388,7 +1417,11 @@
         return `${minutes}:${seconds}`;
       };
 
-      const cleanTitle = (sound) => {
+      const cleanTitle = (sound, index) => {
+
+        if (canonicalTitles[index]) {
+          return canonicalTitles[index];
+        }
 
         if (!sound || !sound.title) {
           return 'WEST THEORY';
@@ -1397,23 +1430,59 @@
         return sound.title.replace(/^\d+\.?\s*/, '');
       };
 
+      const updateCurrentDuration = () => {
+
+        widget.getDuration((currentDuration) => {
+
+          if (
+            typeof currentDuration !== 'number' ||
+            currentDuration <= 0
+          ) {
+            return;
+          }
+
+          duration = currentDuration;
+
+          durationTime.textContent =
+            formatTime(duration);
+
+          const activeRow =
+            tracklist.querySelectorAll('.wt-track')[activeIndex];
+
+          if (!activeRow) {
+            return;
+          }
+
+          const durationCell =
+            activeRow.querySelector('.wt-track-duration');
+
+          if (durationCell) {
+            durationCell.textContent =
+              formatTime(duration);
+          }
+
+        });
+      };
+
       const renderActiveTrack = () => {
 
         const sound = sounds[activeIndex];
 
-        if (!sound) {
-          return;
-        }
-
-        title.textContent = cleanTitle(sound);
+        title.textContent =
+          cleanTitle(sound, activeIndex);
 
         number.textContent =
           `TRACK ${String(activeIndex + 1).padStart(2, '0')}`;
 
-        duration = sound.duration || 0;
+        duration =
+          sound && sound.duration
+            ? sound.duration
+            : 0;
 
         durationTime.textContent =
-          formatTime(duration);
+          duration > 0
+            ? formatTime(duration)
+            : '0:00';
 
         tracklist
           .querySelectorAll('.wt-track')
@@ -1431,7 +1500,9 @@
 
         tracklist.innerHTML = '';
 
-        sounds.forEach((sound, index) => {
+        canonicalTitles.forEach((canonicalTitle, index) => {
+
+          const sound = sounds[index] || null;
 
           const row =
             document.createElement('button');
@@ -1448,17 +1519,24 @@
             <span class="wt-track-name"></span>
 
             <span class="wt-track-duration">
-              ${formatTime(sound.duration)}
+              ${
+                sound && sound.duration
+                  ? formatTime(sound.duration)
+                  : '—:—'
+              }
             </span>
           `;
 
           row.querySelector(
             '.wt-track-name'
-          ).textContent = cleanTitle(sound);
+          ).textContent = canonicalTitle;
 
           row.addEventListener('click', () => {
 
             activeIndex = index;
+
+            progressFill.style.width = '0%';
+            currentTime.textContent = '0:00';
 
             widget.skip(index);
 
@@ -1511,6 +1589,8 @@
               }
 
               renderActiveTrack();
+
+              updateCurrentDuration();
 
             }
           );
