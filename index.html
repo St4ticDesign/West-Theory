@@ -399,7 +399,7 @@
       text-shadow: 0 0 8px rgba(255,255,255,0.25);
     }
 
-    /* SOUNDCLOUD */
+    /* WEST THEORY / SOUNDCLOUD PLAYER */
 
     .soundcloud-player {
       margin-top: 24px;
@@ -415,12 +415,188 @@
       letter-spacing: 3px;
     }
 
-    .soundcloud-player iframe {
+    .wt-player {
       width: 100%;
-      height: 166px;
-      display: block;
+      background: linear-gradient(180deg, #111111 0%, #0a0a0a 100%);
+      border: 1px solid rgba(255,255,255,0.13);
+      overflow: hidden;
+    }
+
+    .wt-player-main {
+      padding: 14px;
+    }
+
+    .wt-now-playing {
+      display: grid;
+      grid-template-columns: 48px 38px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+    }
+
+    .wt-thumb {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .wt-play {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 50%;
+      background: #f1f1f1;
+      color: #090909;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .wt-play:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 18px rgba(255,255,255,0.12);
+    }
+
+    .wt-track-meta {
+      min-width: 0;
+    }
+
+    .wt-track-number {
+      color: #626262;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+
+    .wt-track-title {
+      color: #f2f2f2;
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .wt-progress {
+      height: 3px;
+      margin-top: 14px;
+      background: #292929;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .wt-progress-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0%;
+      background: #f2f2f2;
+      box-shadow: 0 0 7px rgba(255,255,255,0.22);
+      pointer-events: none;
+    }
+
+    .wt-time {
+      margin-top: 7px;
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-size: 9px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .wt-tracklist {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      max-height: 265px;
+      overflow-y: auto;
+    }
+
+    .wt-track {
+      width: 100%;
+      min-height: 35px;
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      padding: 7px 12px;
       border: 0;
-      background: #111111;
+      border-bottom: 1px solid rgba(255,255,255,0.055);
+      background: transparent;
+      color: #8c8c8c;
+      text-align: left;
+      cursor: pointer;
+      font-family: Arial, Helvetica, sans-serif;
+      transition: background .18s ease, color .18s ease;
+    }
+
+    .wt-track:last-child {
+      border-bottom: 0;
+    }
+
+    .wt-track:hover {
+      background: rgba(255,255,255,0.035);
+      color: #e8e8e8;
+    }
+
+    .wt-track.active {
+      color: #ffffff;
+      background: rgba(255,255,255,0.055);
+    }
+
+    .wt-track-index {
+      color: #555;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .wt-track.active .wt-track-index {
+      color: #ffffff;
+    }
+
+    .wt-track-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: .4px;
+    }
+
+    .wt-track-duration {
+      color: #5f5f5f;
+      font-size: 9px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .wt-player-credit {
+      padding: 9px 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #4f4f4f;
+      font-size: 8px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .wt-player-credit a {
+      color: #777;
+      text-decoration: none;
+    }
+
+    .wt-player-credit a:hover {
+      color: #ffffff;
+    }
+
+    .wt-sc-engine {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+      border: 0;
     }
 
     /* ABOUT */
@@ -665,10 +841,6 @@
         gap: 55px;
       }
 
-      .soundcloud-player iframe {
-        height: 166px;
-      }
-
       .about {
         padding: 100px 7%;
       }
@@ -824,13 +996,72 @@
                 LISTEN / SOUNDCLOUD
               </div>
 
-              <iframe
-                title="WEST THEORY - Still Breathing"
-                scrolling="no"
-                frameborder="no"
-                allow="autoplay; encrypted-media"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2301979785%3Fsecret_token%3Ds-GSAlCwutwRk&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false">
-              </iframe>
+              <div class="wt-player" data-player="still-breathing">
+
+                <iframe
+                  class="wt-sc-engine"
+                  title="SoundCloud playback engine - Still Breathing"
+                  allow="autoplay"
+                  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2301979785%3Fsecret_token%3Ds-GSAlCwutwRk&auto_play=false&visual=false">
+                </iframe>
+
+                <div class="wt-player-main">
+
+                  <div class="wt-now-playing">
+
+                    <img
+                      class="wt-thumb"
+                      src="Still Breathing Album Cover_West Theory.png"
+                      alt=""
+                    >
+
+                    <button
+                      class="wt-play"
+                      type="button"
+                      aria-label="Play Still Breathing">
+                      ▶
+                    </button>
+
+                    <div class="wt-track-meta">
+
+                      <div class="wt-track-number">
+                        TRACK 01
+                      </div>
+
+                      <div class="wt-track-title">
+                        LOADING…
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div
+                    class="wt-progress"
+                    aria-label="Seek through current track">
+                    <div class="wt-progress-fill"></div>
+                  </div>
+
+                  <div class="wt-time">
+                    <span class="wt-current">0:00</span>
+                    <span class="wt-duration">0:00</span>
+                  </div>
+
+                </div>
+
+                <div class="wt-tracklist"></div>
+
+                <div class="wt-player-credit">
+                  PLAYBACK VIA
+                  <a
+                    href="https://soundcloud.com/westtheory/sets/still-breathing/s-GSAlCwutwRk"
+                    target="_blank"
+                    rel="noopener">
+                    SOUNDCLOUD
+                  </a>
+                </div>
+
+              </div>
 
             </div>
 
@@ -874,13 +1105,72 @@
                 LISTEN / SOUNDCLOUD
               </div>
 
-              <iframe
-                title="WEST THEORY - Built From Breaks"
-                scrolling="no"
-                frameborder="no"
-                allow="autoplay; encrypted-media"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2302341150%3Fsecret_token%3Ds-8veLyaZfA6R&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false">
-              </iframe>
+              <div class="wt-player" data-player="built-from-breaks">
+
+                <iframe
+                  class="wt-sc-engine"
+                  title="SoundCloud playback engine - Built From Breaks"
+                  allow="autoplay"
+                  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2302341150%3Fsecret_token%3Ds-8veLyaZfA6R&auto_play=false&visual=false">
+                </iframe>
+
+                <div class="wt-player-main">
+
+                  <div class="wt-now-playing">
+
+                    <img
+                      class="wt-thumb"
+                      src="Built From Breaks Album Cover_West Theory.png"
+                      alt=""
+                    >
+
+                    <button
+                      class="wt-play"
+                      type="button"
+                      aria-label="Play Built From Breaks">
+                      ▶
+                    </button>
+
+                    <div class="wt-track-meta">
+
+                      <div class="wt-track-number">
+                        TRACK 01
+                      </div>
+
+                      <div class="wt-track-title">
+                        LOADING…
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div
+                    class="wt-progress"
+                    aria-label="Seek through current track">
+                    <div class="wt-progress-fill"></div>
+                  </div>
+
+                  <div class="wt-time">
+                    <span class="wt-current">0:00</span>
+                    <span class="wt-duration">0:00</span>
+                  </div>
+
+                </div>
+
+                <div class="wt-tracklist"></div>
+
+                <div class="wt-player-credit">
+                  PLAYBACK VIA
+                  <a
+                    href="https://soundcloud.com/westtheory/sets/built-from-breaks/s-8veLyaZfA6R"
+                    target="_blank"
+                    rel="noopener">
+                    SOUNDCLOUD
+                  </a>
+                </div>
+
+              </div>
 
             </div>
 
@@ -1014,6 +1304,7 @@
           <div class="project-identity">
 
             <div>
+
               <div class="identity-label">
                 THE ARTIST
               </div>
@@ -1021,9 +1312,11 @@
               <div class="identity-value">
                 WEST THEORY
               </div>
+
             </div>
 
             <div>
+
               <div class="identity-label">
                 THE VOICES
               </div>
@@ -1031,6 +1324,7 @@
               <div class="identity-value">
                 PART OF THE SOUND
               </div>
+
             </div>
 
           </div>
@@ -1055,6 +1349,264 @@
     </section>
 
   </main>
+
+  <script src="https://w.soundcloud.com/player/api.js"></script>
+
+  <script>
+    document.querySelectorAll('.wt-player').forEach((player) => {
+
+      const iframe = player.querySelector('.wt-sc-engine');
+      const widget = SC.Widget(iframe);
+
+      const playButton = player.querySelector('.wt-play');
+      const title = player.querySelector('.wt-track-title');
+      const number = player.querySelector('.wt-track-number');
+      const currentTime = player.querySelector('.wt-current');
+      const durationTime = player.querySelector('.wt-duration');
+      const progress = player.querySelector('.wt-progress');
+      const progressFill = player.querySelector('.wt-progress-fill');
+      const tracklist = player.querySelector('.wt-tracklist');
+
+      let sounds = [];
+      let activeIndex = 0;
+      let duration = 0;
+      let playing = false;
+
+      const formatTime = (milliseconds) => {
+
+        const totalSeconds = Math.max(
+          0,
+          Math.floor((milliseconds || 0) / 1000)
+        );
+
+        const minutes = Math.floor(totalSeconds / 60);
+
+        const seconds = String(
+          totalSeconds % 60
+        ).padStart(2, '0');
+
+        return `${minutes}:${seconds}`;
+      };
+
+      const cleanTitle = (sound) => {
+
+        if (!sound || !sound.title) {
+          return 'WEST THEORY';
+        }
+
+        return sound.title.replace(/^\d+\.?\s*/, '');
+      };
+
+      const renderActiveTrack = () => {
+
+        const sound = sounds[activeIndex];
+
+        if (!sound) {
+          return;
+        }
+
+        title.textContent = cleanTitle(sound);
+
+        number.textContent =
+          `TRACK ${String(activeIndex + 1).padStart(2, '0')}`;
+
+        duration = sound.duration || 0;
+
+        durationTime.textContent =
+          formatTime(duration);
+
+        tracklist
+          .querySelectorAll('.wt-track')
+          .forEach((row, index) => {
+
+            row.classList.toggle(
+              'active',
+              index === activeIndex
+            );
+
+          });
+      };
+
+      const buildTracklist = () => {
+
+        tracklist.innerHTML = '';
+
+        sounds.forEach((sound, index) => {
+
+          const row =
+            document.createElement('button');
+
+          row.type = 'button';
+
+          row.className = 'wt-track';
+
+          row.innerHTML = `
+            <span class="wt-track-index">
+              ${String(index + 1).padStart(2, '0')}
+            </span>
+
+            <span class="wt-track-name"></span>
+
+            <span class="wt-track-duration">
+              ${formatTime(sound.duration)}
+            </span>
+          `;
+
+          row.querySelector(
+            '.wt-track-name'
+          ).textContent = cleanTitle(sound);
+
+          row.addEventListener('click', () => {
+
+            activeIndex = index;
+
+            widget.skip(index);
+
+            renderActiveTrack();
+
+            widget.play();
+
+          });
+
+          tracklist.appendChild(row);
+
+        });
+
+        renderActiveTrack();
+      };
+
+      widget.bind(
+        SC.Widget.Events.READY,
+        () => {
+
+          widget.getSounds(
+            (playlistSounds) => {
+
+              sounds =
+                Array.isArray(playlistSounds)
+                  ? playlistSounds
+                  : [];
+
+              buildTracklist();
+
+            }
+          );
+
+        }
+      );
+
+      widget.bind(
+        SC.Widget.Events.PLAY,
+        () => {
+
+          playing = true;
+
+          playButton.textContent = '❚❚';
+
+          widget.getCurrentSoundIndex(
+            (index) => {
+
+              if (typeof index === 'number') {
+                activeIndex = index;
+              }
+
+              renderActiveTrack();
+
+            }
+          );
+
+        }
+      );
+
+      widget.bind(
+        SC.Widget.Events.PAUSE,
+        () => {
+
+          playing = false;
+
+          playButton.textContent = '▶';
+
+        }
+      );
+
+      widget.bind(
+        SC.Widget.Events.FINISH,
+        () => {
+
+          playing = false;
+
+          playButton.textContent = '▶';
+
+          progressFill.style.width = '0%';
+
+          currentTime.textContent = '0:00';
+
+        }
+      );
+
+      widget.bind(
+        SC.Widget.Events.PLAY_PROGRESS,
+        (event) => {
+
+          currentTime.textContent =
+            formatTime(event.currentPosition);
+
+          if (duration > 0) {
+
+            progressFill.style.width =
+              `${Math.min(
+                100,
+                (event.currentPosition / duration) * 100
+              )}%`;
+
+          }
+
+        }
+      );
+
+      playButton.addEventListener(
+        'click',
+        () => {
+
+          if (playing) {
+            widget.pause();
+          } else {
+            widget.play();
+          }
+
+        }
+      );
+
+      progress.addEventListener(
+        'click',
+        (event) => {
+
+          if (!duration) {
+            return;
+          }
+
+          const rect =
+            progress.getBoundingClientRect();
+
+          const ratio =
+            Math.max(
+              0,
+              Math.min(
+                1,
+                (event.clientX - rect.left) /
+                rect.width
+              )
+            );
+
+          widget.seekTo(
+            duration * ratio
+          );
+
+        }
+      );
+
+    });
+  </script>
 
 </body>
 </html>
